@@ -14,9 +14,12 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/dep/LIBFT/includes",
-				"${workspaceFolder}/dep/GNL/includes",
-				"${workspaceFolder}/dep/math_ft/includes",
-				"${workspaceFolder}/includes"
+                "${workspaceFolder}/dep/GNL/includes",
+                "${workspaceFolder}/dep/math_ft/includes",
+                "${workspaceFolder}/includes",
+                "${workspaceFolder}/dep/utilft/includes",
+                "${workspaceFolder}/dep/lib3dft/includes",
+                "${workspaceFolder}/dep/SDLGF/includes"
             ]
         }
     ],

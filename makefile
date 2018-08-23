@@ -5,4 +5,4 @@ include dep/gen.mk
 export NAME
 
 make: $(OBJS)
-	gcc $(OBJS) $(INCLUDE) $(LIBPATHS) $(LINKS) -o $(NAME)
+	gcc $(OBJS) $(INCLUDE) $(LIBPATHS) $(LINKS) -o $(NAME) -framework opengl -framework appkit -lmlx

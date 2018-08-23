@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv_1.h                                            :+:      :+:    :+:   */
+/*   utilft.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/21 12:23:35 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/23 12:32:01 by wgourley         ###   ########.fr       */
+/*   Created: 2018/08/23 09:36:30 by wgourley          #+#    #+#             */
+/*   Updated: 2018/08/23 09:48:59 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV_1_H
-# define RTV_1_H
+#ifndef UTILFT_H
+# define UTILFT_H
 
-# define WINDOW_W 800
-# define WINDOW_H 600
-
-#include <libft.h>
 #include <math_ft.h>
-#include <get_next_line.h>
-#include <utilft.h>
-#include <sdlgf.h>
 
-#define F(i) (t_value) i
+typedef struct s_array
+{
+	void	*items;
+	t_len	len;
+	t_len	size;	
+}	t_array;
+
+t_array	*create_array(t_len size);
+void	free_array(t_array *ar);
+int		array_push(t_array *ar, void *item);
 
 #endif

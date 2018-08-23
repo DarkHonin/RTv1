@@ -1,5 +1,10 @@
 include libs.mk
 LIBDIR=$(realpath .)
+ifdef LIB
+TARGS=$(LIBDIR)/$(LIB)
+else
+TARGS=$(LIBRAIRIES)
+endif
 dep_build:
 	@for i in $(LIBRAIRIES); do \
 		echo "Making: $$i"; \
@@ -16,6 +21,6 @@ dep_fclean:
 
 dep_re:
 	@echo "Rebuilding..."
-	@for i in $(LIBRAIRIES); do \
+	@for i in $(TARGS); do \
 		make -C $$i re LIBDIR=$(LIBDIR) -s ;\
 	done

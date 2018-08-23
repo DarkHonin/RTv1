@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv_1.h                                            :+:      :+:    :+:   */
+/*   stage_factory.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/21 12:23:35 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/23 12:32:01 by wgourley         ###   ########.fr       */
+/*   Created: 2018/08/23 11:13:33 by wgourley          #+#    #+#             */
+/*   Updated: 2018/08/23 11:17:12 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV_1_H
-# define RTV_1_H
+#include <3dft.h>
 
-# define WINDOW_W 800
-# define WINDOW_H 600
+t_stage	*get_stage()
+{
+	static t_stage STAGE;
 
-#include <libft.h>
-#include <math_ft.h>
-#include <get_next_line.h>
-#include <utilft.h>
-#include <sdlgf.h>
-
-#define F(i) (t_value) i
-
-#endif
+	if (STAGE.camera.type != CAMERA)
+	{
+		STAGE.camera.type = CAMERA;
+		ft_bzero(STAGE.camera.values[0], sizeof(int) * 3);
+		ft_bzero(STAGE.camera.values[1], sizeof(int) * 3);
+	}
+	return (&STAGE);
+}

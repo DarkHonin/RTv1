@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"rtv_1.h": "c"
+		"rtv_1.h": "c",
+		"stdio.h": "c",
+		"libft.h": "c"
 	}
 }

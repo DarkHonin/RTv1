@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   3dft.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/23 09:34:16 by wgourley          #+#    #+#             */
+/*   Updated: 2018/08/23 13:21:36 by wgourley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef _3DFT_H
+# define _3DFT_H
+
+#include <libft.h>
+#include <math_ft.h>
+#include <utilft.h>
+
+enum	e_shape
+{
+	LINE,
+	PLANE_RECT,
+	PLANE_CIRCLE,
+	BODY_QUAD,
+	BODY_VOX,
+	BODY_CYLANDER,
+	BODY_CIRCLE,
+	CAMERA
+};
+
+typedef	enum e_shape	t_shape_type;
+typedef	struct			s_shape
+{
+	t_value				values[3][3];
+	t_shape_type		type;
+}						t_shape;
+typedef	t_array			t_space;
+typedef	struct			s_stage
+{
+	t_space		*space;
+	t_shape		camera;
+}						t_stage;
+
+void		log_shape(t_shape *e);
+char		*get_shape_string(t_shape_type s);
+t_stage		*get_stage();
+void		set_projection_surface(t_shape *camera, t_value_v vals);
+void		set_projection_rotation(t_shape *camera, t_value_v vals);
+void		set_projection_anchor(t_shape *camera, t_value_v vals);
+t_value		get_fov(t_shape cam);
+t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el);
+t_value_v	cam_dir_from_origen(t_shape cam);
+
+#endif
