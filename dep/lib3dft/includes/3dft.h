@@ -6,17 +6,17 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 09:34:16 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/23 13:21:36 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/25 11:13:22 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _3DFT_H
 # define _3DFT_H
 
-#include <libft.h>
-#include <math_ft.h>
-#include <utilft.h>
-
+# include <libft.h>
+# include <math_ft.h>
+# include <utilft.h>
+# define ROT_MATRIX_SIZE (t_size) {4, 4}
 enum	e_shape
 {
 	LINE,
@@ -51,5 +51,6 @@ void		set_projection_anchor(t_shape *camera, t_value_v vals);
 t_value		get_fov(t_shape cam);
 t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el);
 t_value_v	cam_dir_from_origen(t_shape cam);
-
+t_value_m	matrix_x_rot(t_value angle);
+t_value_m	matrix_y_rot(t_value angle);
 #endif
