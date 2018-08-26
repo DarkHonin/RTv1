@@ -55,5 +55,7 @@ t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el);
 t_value_v	cam_dir_from_origen(t_shape cam);
 t_value_m	matrix_x_rot(t_value angle);
 t_value_m	matrix_y_rot(t_value angle);
+t_value_m	matrix_z_rot(t_value angle);
+t_value_m	matrix_global_rot(t_value angle);
 t_value_m	guide_anchor_to_points(t_shape sp);
 #endif
