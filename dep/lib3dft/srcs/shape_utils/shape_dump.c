@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 10:34:06 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/23 12:18:11 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/26 11:28:39 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,10 @@ char	*get_shape_string(t_shape_type s)
 
 void	log_shape(t_shape *e)
 {
-	int y;
-	int x;
-
-	y = 0;
 	log_open(LOG, "LOG", &log_shape);
 	ft_putstr(get_shape_string(e->type));
 	log_close("log_shape");
-	while (y < 3)
-	{
-		log_open(LOG, "LOG", &log_shape);
-		ft_putstr("[");
-		ft_putnbr(y);
-		ft_putstr("]");
-		x = 0;
-		while (x < 3)
-		{
-			ft_putchar('\t');
-			ft_putnbr(e->values[y][x]);
-			x++;
-		}
-		y++;
-		log_close("log_shape");
-	}
+	log_value_v(e->anchor, 3);
+	log_value_v(e->size, 3);
+	log_value_v(e->rotation, 3);
 }

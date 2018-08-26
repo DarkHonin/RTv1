@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 09:34:16 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/25 11:13:22 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/26 12:33:28 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <libft.h>
 # include <math_ft.h>
 # include <utilft.h>
-# define ROT_MATRIX_SIZE (t_size) {4, 4}
+# define ROT_MATRIX_SIZE (t_size) {3, 3}
 enum	e_shape
 {
 	LINE,
@@ -32,7 +32,9 @@ enum	e_shape
 typedef	enum e_shape	t_shape_type;
 typedef	struct			s_shape
 {
-	t_value				values[3][3];
+	t_vect3				anchor;
+	t_vect3				size;
+	t_vect3				rotation;
 	t_shape_type		type;
 }						t_shape;
 typedef	t_array			t_space;
@@ -53,4 +55,5 @@ t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el);
 t_value_v	cam_dir_from_origen(t_shape cam);
 t_value_m	matrix_x_rot(t_value angle);
 t_value_m	matrix_y_rot(t_value angle);
+t_value_m	guide_anchor_to_points(t_shape sp);
 #endif
