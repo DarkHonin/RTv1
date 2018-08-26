@@ -52,6 +52,7 @@ mod_sync:
 
 mod_push:
 	@for i in $(LIBRAIRIES); do \
+		echo "$$i"; \
 		cd $$i;	\
 		git add .; \
 		git commit -m "$(MSG)"; \
