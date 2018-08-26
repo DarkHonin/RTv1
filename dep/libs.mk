@@ -86,3 +86,27 @@ dep_re:
 	@for i in $(TARGS); do \
 		make -C $$i re LIBDIR=$(LIBDIR) -s ;\
 	done
+
+dep_pack: dep_fclean
+	@echo -n "Packing"
+	#@mkdir -f pack
+	@e=0; \
+	for i in $(LIBRAIRIES); do \
+		s=$$(basename $$i); \
+		echo $$s; \
+		tar -cf pack/dep_$$s.tar dep/$$s; \
+		rm -rf $$i; \
+		((e++)); \
+		echo -n "."; \
+	done
+	@echo Done
+
+PACKS=$(shell find pack -type f)
+dep_unpack:
+	@echo "Unacking"
+	for i in $(PACKS); do \
+		echo $$i; \
+		tar -xvf $$i; \
+	done
+	@echo Done
+
