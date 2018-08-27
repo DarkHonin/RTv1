@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 10:34:44 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/25 10:44:55 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/27 13:25:24 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,19 @@ t_value_m	matrix_z_rot(t_value angle)
 	return (mtr);
 }
 
-t_value_m	matrix_global_rot(t_value angle)
+t_value_m	matrix_global_rot(t_value x, t_value y, t_value z)
 {
-	t_value_m s;
-	t_value_m z;
-
-	z = matrix_multiply(matrix_x_rot(angle), matrix_y_rot(angle), ROT_MATRIX_SIZE, ROT_MATRIX_SIZE);
-	s = matrix_multiply(matrix_z_rot(angle), z, ROT_MATRIX_SIZE, ROT_MATRIX_SIZE);
-	free(z);
-	return (s);
+	t_value_m _x;
+	t_value_m _y;
+	t_value_m _z;
+	t_value_m hold;
+	t_value_m ret;
+	
+	_x = matrix_x_rot(x);
+	_y = matrix_x_rot(y);
+	_z = matrix_x_rot(z);
+	hold = matrix_multiply(_x, _y, ROT_MATRIX_SIZE, ROT_MATRIX_SIZE);
+	ret = matrix_multiply(hold, _z, ROT_MATRIX_SIZE, ROT_MATRIX_SIZE);
+	free_value_m(hold, ROT_MATRIX_SIZE[1]);
+	return (ret);
 }

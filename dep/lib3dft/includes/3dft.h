@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 09:34:16 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/26 12:33:28 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/27 12:32:33 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ t_value_v	cam_dir_from_origen(t_shape cam);
 t_value_m	matrix_x_rot(t_value angle);
 t_value_m	matrix_y_rot(t_value angle);
 t_value_m	matrix_z_rot(t_value angle);
-t_value_m	matrix_global_rot(t_value angle);
+t_value_m	matrix_global_rot(t_value x, t_value y, t_value za);
 t_value_m	guide_anchor_to_points(t_shape sp);
 #endif
