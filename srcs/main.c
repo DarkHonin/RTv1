@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 12:34:42 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/26 12:21:27 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/27 14:51:21 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@ int	loop(t_stage *s)
 	q.anchor[0] = 0;
 	q.anchor[1] = 0;
 	q.anchor[2] = 0;
+	clean();
 	draw_shape_anchor(q, get_stage()->camera);
 	flip();
+	put_string(ft_itoa(get_stage()->camera.anchor[0]), 0, 0, (t_color){255, 255, 255});
+	put_string(ft_itoa(get_stage()->camera.anchor[1]), 0, 15, (t_color){255, 255, 255});
+	put_string(ft_itoa(get_stage()->camera.anchor[2]), 0, 30, (t_color){255, 255, 255});
 	return (s!=NULL);
 }
 
 int event_hook()
 {
+	get_stage()->camera.anchor[2]++;
 	return 1;
 }
 

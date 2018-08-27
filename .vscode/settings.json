@@ -2,6 +2,7 @@
 	"files.associations": {
 		"rtv_1.h": "c",
 		"stdio.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"sdlgf.h": "c"
 	}
 }

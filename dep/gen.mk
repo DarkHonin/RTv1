@@ -24,7 +24,7 @@ $(NAME): $(LIB_CFG)
 
 $(OBJS): $(OBJ_DIR)
 	@echo "Creating: $@"
-	@gcc $(shell find $(SRC_DIR) -type f -name $(notdir $*)) -o $@ $(INCLUDE) -I $(INCLUDE_DIR) -c -Wextra -Wall -Werror
+	@gcc $(shell find $(SRC_DIR) -type f -name $(notdir $*)) -o $@ $(INCLUDE) -I $(INCLUDE_DIR) -c #-Wextra -Wall -Werror
 
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
