@@ -17,6 +17,7 @@
 # include <math_ft.h>
 # include <utilft.h>
 # define ROT_MATRIX_SIZE (t_size) {3, 3}
+# define ORIGEN	(t_vect3) {1, 1, 1}
 enum	e_shape
 {
 	LINE,

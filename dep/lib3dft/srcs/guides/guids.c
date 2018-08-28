@@ -18,7 +18,6 @@ t_value_m	guide_anchor_to_points(t_shape sp)
 	t_value_m	anchors;
 	t_len x;
 
-	log_open(INFO, "ANCHOR", &guide_anchor_to_points);
 	anchors = create_value_m((t_size){3, 3});
 	x = 0;
 	while (x < 3)
@@ -27,6 +26,5 @@ t_value_m	guide_anchor_to_points(t_shape sp)
 		anchors[x][x]+=20;
 		x++;
 	}
-	log_close("guide_anchor_to_points");
 	return (anchors);
 }
