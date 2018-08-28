@@ -1,6 +1,7 @@
 include $(LIB_CFG)
-
+ifndef SRC_DIR
 SRC_DIR=$(WORKING_DIR)/srcs
+endif
 OBJ_DIR=$(WORKING_DIR)/objs
 INCLUDE_DIR=$(WORKING_DIR)/includes
 
