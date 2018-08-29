@@ -27,13 +27,12 @@ int	loop(t_stage *s)
 	c.anchor[0] = ORIGEN[0];
 	c.anchor[1] = ORIGEN[1];
 	c.anchor[2] = ORIGEN[2];
-	q.anchor[0] = 10;
-	q.anchor[1] = 5;
-	q.anchor[2] = 10;
+	q.anchor[0] = -10;
+	q.anchor[1] = 2;
+	q.anchor[2] = -4;
 	clean();
 	draw_shape_anchor(q, s->camera);
-	draw_shape_anchor(c, s->camera);
-	SDL_SetWindowTitle(get_window()->window_pointer, ft_itoa(s->camera.anchor[0]));
+	//draw_shape_anchor(c, s->camera);
 	flip();
 	return (s!=NULL);
 }
@@ -43,7 +42,7 @@ int event_handle(void *e)
 	SDL_Event *event;
 
 	event = e;
-	if (event->type == SDL_KEYUP)
+	if (event->type == SDL_KEYDOWN)
 	{
 		if (event->key.keysym.sym == SDLK_LEFT)
 			get_stage()->camera.anchor[0]--;
@@ -57,6 +56,10 @@ int event_handle(void *e)
 			get_stage()->camera.anchor[2]--;
 		else if (event->key.keysym.sym == SDLK_s)
 			get_stage()->camera.anchor[2]++;
+		if (event->key.keysym.sym == SDLK_PLUS)
+			get_stage()->camera.size[2]++;
+		else if (event->key.keysym.sym == SDLK_MINUS)
+			get_stage()->camera.size[2]--;
 
 		
 		t_value_v dir = cam_dir_from_origen(get_stage()->camera);
@@ -75,8 +78,8 @@ int main(int ac, char **av)
 	t_window	*win;
 
 	stage = get_stage();
-	set_projection_surface(&(stage->camera), (t_value[3]){F(WINDOW_W), F(WINDOW_H), F(0)});
-	set_projection_anchor(&(stage->camera), (t_value[3]){F(20), F(20), F(20)});
+	set_projection_surface(&(stage->camera), (t_value[3]){F(WINDOW_W), F(WINDOW_H), F(50)});
+	set_projection_anchor(&(stage->camera), (t_value[3]){F(20), F(0), F(20)});
 	log_shape(&(stage->camera));
 	win = get_window();
 	//mlx_key_hook(win->window_pointer, &event_hook, NULL);

@@ -23,7 +23,7 @@ t_value_m	guide_anchor_to_points(t_shape sp)
 	while (x < 3)
 	{
 		matrix_set_row(anchors, sp.anchor, (t_size){3, 3}, x);
-		anchors[x][x]+=20;
+		anchors[x][x]+=1000;
 		x++;
 	}
 	return (anchors);

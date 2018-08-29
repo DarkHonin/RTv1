@@ -20,7 +20,7 @@ t_value_v	cam_dir_from_origen(t_shape cam)
 	t_value_v	ang;
 	t_value 	x;
 	t_value 	y;
-	t_len i;
+	t_len 		i;
 
 	ang = create_value_v(3);
 	i = 0;
@@ -36,6 +36,25 @@ t_value_v	cam_dir_from_origen(t_shape cam)
 	return (ang);
 }
 
+t_value_v	cam_triangulate(t_value_v prog, t_shape cam)
+{
+	t_value_v	delta;
+	t_value		r;
+	t_value_v	dir;
+	t_value_v	pos;
+
+	pos = create_value_v(2);
+	delta = vect_diff(prog, cam.anchor, 3);
+	dir = create_value_v(3);
+	dir[2] = vect_direction(delta, 3, Z_AXIS);
+	dir[1] = vect_direction(delta, 3, Y_AXIS);
+	dir[0] = vect_direction(delta, 3, X_AXIS);
+
+	pos[0] = (cos(dir[0]) * -cam.size[2]);
+	pos[1] = (cos(dir[2]) * -cam.size[2]);
+	return (pos);
+}
+
 t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el)
 {
 	t_value_v	ret;
@@ -49,9 +68,9 @@ t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el)
 	dir = cam_dir_from_origen(cam);
 	rt = matrix_global_rot(-dir[0], -dir[1], -dir[2]);
 	hold = matrix_multiply(&dist, rt, (t_size){el, 1}, ROT_MATRIX_SIZE);
-	ret[0] = hold[0][0] *  hold[0][1];
-	ret[1] = hold[0][2] *  hold[0][1];
-	ret[0] = (cam.size[0] / 2) - ret[0];
-	ret[1] = (cam.size[1] / 2) - ret[1];
+	ret = cam_triangulate(hold[0], cam);
+	ret[0] = (cam.size[0] / 2) + ret[0];
+	ret[1] = (cam.size[1] / 2) + ret[1];
+	log_value_v(ret, 2);
 	return(ret);
 }
