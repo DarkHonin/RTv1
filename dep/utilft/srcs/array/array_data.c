@@ -21,11 +21,11 @@ int		array_push(t_array *ar, void *item)
 {
 	void	*holder;
 
-	log_state("[array_push]\tCreating new pointer", &array_push);
+	log_state(LOG, "[array_push]\tCreating new pointer", &array_push);
 	holder = ft_memalloc((ar->len + 1) * ar->size);
-	log_state("[array_push]\tCopying original", &array_push);
+	log_state(LOG, "[array_push]\tCopying original", &array_push);
 	ft_memcpy(holder, ar->items, ar->len * ar->size);
-	log_state("[array_push]\tCreating new pointer", &array_push);
+	log_state(LOG, "[array_push]\tCreating new pointer", &array_push);
 	ft_memcpy(holder + (ar->len * ar->size), item, ar->size);
 	free(ar->items);
 	ar->items = holder;

@@ -24,15 +24,15 @@ int	loop(t_stage *s)
 	t_shape	q;
 	t_shape	c;
 
-	c.anchor[0] = ORIGEN[0];
-	c.anchor[1] = ORIGEN[1];
-	c.anchor[2] = ORIGEN[2];
+	c.anchor[0] = 1;
+	c.anchor[1] = 1;
+	c.anchor[2] = 1;
 	q.anchor[0] = -10;
 	q.anchor[1] = 2;
 	q.anchor[2] = -4;
 	clean();
-	draw_shape_anchor(q, s->camera);
-	//draw_shape_anchor(c, s->camera);
+	//draw_shape_anchor(q, s->camera);
+	draw_shape_anchor(c, s->camera);
 	flip();
 	return (s!=NULL);
 }
@@ -79,7 +79,7 @@ int main(int ac, char **av)
 
 	stage = get_stage();
 	set_projection_surface(&(stage->camera), (t_value[3]){F(WINDOW_W), F(WINDOW_H), F(50)});
-	set_projection_anchor(&(stage->camera), (t_value[3]){F(20), F(0), F(20)});
+	set_projection_anchor(&(stage->camera), (t_value[3]){F(20), F(20), F(20)});
 	log_shape(&(stage->camera));
 	win = get_window();
 	//mlx_key_hook(win->window_pointer, &event_hook, NULL);
