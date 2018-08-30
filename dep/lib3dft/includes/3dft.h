@@ -20,7 +20,6 @@
 # define ORIGEN	(t_vect3) {1, 1, 1}
 enum	e_shape
 {
-	LINE,
 	PLANE_RECT,
 	PLANE_CIRCLE,
 	BODY_QUAD,
@@ -45,6 +44,8 @@ typedef	struct			s_stage
 	t_shape		camera;
 }						t_stage;
 
+typedef	t_value (*t_shape_collider)(t_shape, t_value, t_value, t_axis);
+
 void		log_shape(t_shape *e);
 char		*get_shape_string(t_shape_type s);
 t_stage		*get_stage();
@@ -59,4 +60,7 @@ t_value_m	matrix_y_rot(t_value angle);
 t_value_m	matrix_z_rot(t_value angle);
 t_value_m	matrix_global_rot(t_value x, t_value y, t_value za);
 t_value_m	guide_anchor_to_points(t_shape sp);
+t_value		(*shape_get_function(t_shape_type e))(t_shape, t_value, t_value, t_axis);
+t_value		shape_plane_intersect(t_shape s, t_value ray_slope,
+				t_value ray_intersect, t_axis axis);
 #endif

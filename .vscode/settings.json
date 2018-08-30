@@ -3,6 +3,9 @@
 		"rtv_1.h": "c",
 		"stdio.h": "c",
 		"libft.h": "c",
-		"sdlgf.h": "c"
+		"sdlgf.h": "c",
+		"sdl.h": "c",
+		"sdl_endian.h": "c",
+		"sdl_events.h": "c"
 	}
 }
