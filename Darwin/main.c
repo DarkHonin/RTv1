@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 12:34:42 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/27 14:51:21 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/30 12:59:12 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,16 @@
 #include <math.h>
 #include <sdlgf.h>
 
-void	test_matrix_multiple();
-
 int	loop(t_stage *s)
 {
-	
-	t_shape	q;
 	t_shape	c;
+	t_len i;
 
-	c.anchor[0] = 1;
-	c.anchor[1] = 1;
-	c.anchor[2] = 1;
-	q.anchor[0] = -10;
-	q.anchor[1] = 2;
-	q.anchor[2] = -4;
+	c.anchor[0] = 0;
+	c.anchor[1] = 0;
+	c.anchor[2] = 0;
 	clean();
-	//draw_shape_anchor(q, s->camera);
+	trace_space(*s);	
 	draw_shape_anchor(c, s->camera);
 	flip();
 	return (s!=NULL);
@@ -39,42 +33,35 @@ int	loop(t_stage *s)
 
 int event_handle(void *e)
 {
-	SDL_Event *event;
-
-	event = e;
-	if (event->type == SDL_KEYDOWN)
-	{
-		if (event->key.keysym.sym == SDLK_LEFT)
-			get_stage()->camera.anchor[0]--;
-		else if (event->key.keysym.sym == SDLK_RIGHT)
-			get_stage()->camera.anchor[0]++;
-		if (event->key.keysym.sym == SDLK_DOWN)
-			get_stage()->camera.anchor[1]--;
-		else if (event->key.keysym.sym == SDLK_UP)
-			get_stage()->camera.anchor[1]++;
-		if (event->key.keysym.sym == SDLK_w)
-			get_stage()->camera.anchor[2]--;
-		else if (event->key.keysym.sym == SDLK_s)
-			get_stage()->camera.anchor[2]++;
-		if (event->key.keysym.sym == SDLK_PLUS)
-			get_stage()->camera.size[2]++;
-		else if (event->key.keysym.sym == SDLK_MINUS)
-			get_stage()->camera.size[2]--;
-
-		
-		t_value_v dir = cam_dir_from_origen(get_stage()->camera);
-		log_value_v(dir, 3);
-		t_value_m mtr = matrix_global_rot(dir[0], dir[1], dir[2]);
-		log_value_m(mtr, ROT_MATRIX_SIZE);
-	}
 	return 1;
+}
+
+int key_event(int keycode, void *stage)
+{
+	t_stage *e;
+
+	e = stage;
+	if (keycode == KEY_ESC)
+		close_window();
+	if (keycode == KEY_UP)
+		((t_shape *)e->space->items)[0].anchor[2]++;
+	if (keycode == KEY_DOWN)
+		((t_shape *)e->space->items)[0].anchor[2]--;
+	if (keycode == KEY_LEFT)
+		((t_shape *)e->space->items)[0].anchor[0]--;
+	if (keycode == KEY_RIGHT)
+		((t_shape *)e->space->items)[0].anchor[0]++;
+	if (keycode == KEY_W)
+		((t_shape *)e->space->items)[0].anchor[1]++;
+	if (keycode == KEY_S)
+		((t_shape *)e->space->items)[0].anchor[1]--;
+	return (1);
 }
 
 int main(int ac, char **av)
 {
-	test_matrix_multiple();
-
 	t_stage		*stage;
+	t_shape		hold;
 	t_window	*win;
 
 	stage = get_stage();
@@ -82,7 +69,15 @@ int main(int ac, char **av)
 	set_projection_anchor(&(stage->camera), (t_value[3]){F(20), F(20), F(20)});
 	log_shape(&(stage->camera));
 	win = get_window();
-	//mlx_key_hook(win->window_pointer, &event_hook, NULL);
-	start_loop(&loop, stage);
 
+	hold.anchor[0] = 5;
+	hold.anchor[1] = 5;
+	hold.anchor[2] = 5;
+	hold.size[0] = 5;
+	hold.size[1] = 5;
+	hold.size[2] = 5;
+	hold.type = PLANE_RECT;
+	array_push(stage->space, &hold);
+	
+	start_loop(&loop, stage);
 }

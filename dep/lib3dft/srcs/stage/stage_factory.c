@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 11:13:33 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/26 11:23:00 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/30 10:18:02 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_stage	*get_stage()
 		STAGE.camera.type = CAMERA;
 		ft_bzero(STAGE.camera.anchor, sizeof(int) * 3);
 		ft_bzero(STAGE.camera.size, sizeof(int) * 3);
+		STAGE.space = create_array(sizeof(t_shape));
 	}
 	return (&STAGE);
 }
