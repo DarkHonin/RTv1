@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 10:34:06 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/26 11:28:39 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/31 11:13:42 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*get_shape_string(t_shape_type s)
 {
 	static char *names[] = {
-		"LINE",
 		"PLANE_RECT",
 		"PLANE_CIRCLE",
 		"BODY_QUAD",

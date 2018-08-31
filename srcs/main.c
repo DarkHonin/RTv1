@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 12:34:42 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/30 12:59:12 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/31 11:16:36 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	loop(t_stage *s)
 	c.anchor[2] = 0;
 	clean();
 	trace_space(*s);
-	draw_shape_anchor(c, s->camera);
 	flip();
 	return (s!=NULL);
 }
@@ -49,12 +48,13 @@ int main(int ac, char **av)
 	win = get_window();
 
 	hold.anchor[0] = 5;
-	hold.anchor[1] = 5;
-	hold.anchor[2] = 5;
+	hold.anchor[1] = 2;
+	hold.anchor[2] = 2;
 	hold.size[0] = 5;
 	hold.size[1] = 5;
 	hold.size[2] = 5;
 	hold.type = PLANE_RECT;
+	log_shape(&hold);
 	array_push(stage->space, &hold);	
 	start_loop(&loop, stage);
 }

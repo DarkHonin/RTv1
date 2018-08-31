@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 09:34:16 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/27 12:32:33 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/08/31 11:54:32 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef	struct			s_stage
 	t_shape		camera;
 }						t_stage;
 
-typedef	t_value (*t_shape_collider)(t_shape, t_value, t_value, t_axis);
+typedef	t_value (*t_shape_collider)(t_value_v, t_value_v);
 
 void		log_shape(t_shape *e);
 char		*get_shape_string(t_shape_type s);
@@ -60,7 +60,10 @@ t_value_m	matrix_y_rot(t_value angle);
 t_value_m	matrix_z_rot(t_value angle);
 t_value_m	matrix_global_rot(t_value x, t_value y, t_value za);
 t_value_m	guide_anchor_to_points(t_shape sp);
-t_value		(*shape_get_function(t_shape_type e))(t_shape, t_value, t_value, t_axis);
+t_value		(*shape_get_function(t_shape_type e))(t_value_v, t_value_v);
 t_value		shape_plane_intersect(t_shape s, t_value ray_slope,
 				t_value ray_intersect, t_axis axis);
+
+t_value_v	line_get_info(t_value_v a, t_value_v offset, t_axis ax);
+t_value_v	plane_get_line(t_shape s, t_axis ax);
 #endif
