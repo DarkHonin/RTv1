@@ -84,3 +84,26 @@ t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el)
 	
 	return(ret);
 }
+
+
+/*
+**	The point is iether on the x-axis or the y axis
+**	of the viewport.
+**	The function computes the slope and the y intersect of the
+**	ray in 3D space
+*/
+
+t_value_v	cam_spawn_ray(t_shape cam, t_value point, t_axis a)
+{
+	t_value_v ret;
+	t_value_v proj;
+	t_value_v size;
+
+	ret = create_value_v(2);
+	proj = project_view_axis(cam.anchor, a);
+	size = project_view_axis(cam.size, a);
+	ret[0] = (point - size[0]) / size[1];
+	ret[1] = size[1] - (ret[0] * (size[0]));
+	ret[1] += proj[1];
+	return (ret);
+}

@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shape_provider.c                                   :+:      :+:    :+:   */
+/*   stage_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 22:43:33 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/30 22:43:33 by wgourley         ###   ########.fr       */
+/*   Created: 2018/09/02 11:45:45 by wgourley          #+#    #+#             */
+/*   Updated: 2018/09/02 11:45:45 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <3dft.h>
 
-t_value		(*shape_get_function(t_shape_type e))(t_shape, t_value, t_value, t_axis)
+t_value_v	project_view_axis(t_value_v s, t_axis a)
 {
-	static t_shape_collider f[] = {
-		&shape_plane_intersect
-	};
-	return (f[e]);
+	t_value_v ret;
+
+	ret = create_value_v(2);
+	ret[0] = s[ABS(a - 1)];
+	ret[1] = s[(a + 1) % 3];
+	return (ret);
 }

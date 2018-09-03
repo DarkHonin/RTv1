@@ -23,5 +23,8 @@
 #include <sdlgf.h>
 
 #define F(i) (t_value) i
+void	trace_x_axis();
+void	trace_y_axis();
+void	trace_z_axis();
 
 #endif

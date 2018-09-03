@@ -36,6 +36,7 @@ typedef	struct			s_shape
 	t_vect3				size;
 	t_vect3				rotation;
 	t_shape_type		type;
+	int					color[3];
 }						t_shape;
 typedef	t_array			t_space;
 typedef	struct			s_stage
@@ -55,15 +56,10 @@ void		set_projection_anchor(t_shape *camera, t_value_v vals);
 t_value		get_fov(t_shape cam);
 t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el);
 t_value_v	cam_dir_from_origen(t_shape cam);
+t_value_v	cam_spawn_ray(t_shape cam, t_value point, t_axis a);
 t_value_m	matrix_x_rot(t_value angle);
 t_value_m	matrix_y_rot(t_value angle);
 t_value_m	matrix_z_rot(t_value angle);
 t_value_m	matrix_global_rot(t_value x, t_value y, t_value za);
-t_value_m	guide_anchor_to_points(t_shape sp);
-t_value		(*shape_get_function(t_shape_type e))(t_value_v, t_value_v);
-t_value		shape_plane_intersect(t_shape s, t_value ray_slope,
-				t_value ray_intersect, t_axis axis);
-
-t_value_v	line_get_info(t_value_v a, t_value_v offset, t_axis ax);
-t_value_v	plane_get_line(t_shape s, t_axis ax);
+t_value_v	project_view_axis(t_value_v s, t_axis a);
 #endif
