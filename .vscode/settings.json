@@ -6,6 +6,10 @@
 		"sdlgf.h": "c",
 		"sdl.h": "c",
 		"sdl_endian.h": "c",
-		"sdl_events.h": "c"
+		"sdl_events.h": "c",
+		"type_traits": "cpp",
+		"cmath": "c",
+		"cstdlib": "c",
+		"math.h": "c"
 	}
 }

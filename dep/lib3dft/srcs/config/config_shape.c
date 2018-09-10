@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stage_factory.c                                    :+:      :+:    :+:   */
+/*   config_shape.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/23 11:13:33 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/30 10:18:02 by wgourley         ###   ########.fr       */
+/*   Created: 2018/09/03 22:27:24 by wgourley          #+#    #+#             */
+/*   Updated: 2018/09/03 22:27:24 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <3dft.h>
 
-t_stage	*get_stage()
+void	shape_set(t_shape_c com, t_value_v data, t_shape *s)
 {
-	static t_stage STAGE;
+	t_len i;
 
-	if (STAGE.camera.type != SHAPE_CAMERA)
+	i = 0;
+	while (i < 3)
 	{
-		STAGE.camera.type = SHAPE_CAMERA;
-		STAGE.space = create_array(sizeof(t_shape));
+		s->components[com][i] = data[i];
+		i++;
 	}
-	return (&STAGE);
 }

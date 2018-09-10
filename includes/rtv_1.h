@@ -14,7 +14,7 @@
 # define RTV_1_H
 
 # define WINDOW_W 800
-# define WINDOW_H 600
+# define WINDOW_H 800
 
 #include <libft.h>
 #include <math_ft.h>
@@ -23,8 +23,6 @@
 #include <sdlgf.h>
 
 #define F(i) (t_value) i
-void	trace_x_axis();
-void	trace_y_axis();
-void	trace_z_axis();
+void	read_shapes(char *file);
 
 #endif

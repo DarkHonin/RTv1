@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   guids.c                                            :+:      :+:    :+:   */
+/*   names.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/26 11:33:49 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/27 12:56:17 by wgourley         ###   ########.fr       */
+/*   Created: 2018/09/03 19:39:58 by wgourley          #+#    #+#             */
+/*   Updated: 2018/09/03 19:39:58 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sdlgf.h>
 #include <3dft.h>
 
-t_value_m	guide_anchor_to_points(t_shape sp)
+const char	*shape_get_name(t_shape_type t)
 {
-	t_value_m	anchors;
-	t_len x;
-
-	anchors = create_value_m((t_size){3, 3});
-	x = 0;
-	while (x < 3)
+	static const char	*names[] = 
 	{
-		matrix_set_row(anchors, sp.anchor, (t_size){3, 3}, x);
-		anchors[x][x]+=1000;
-		x++;
-	}
-	return (anchors);
+		"SHAPE_LINE",
+		"SHAPE_PLANE",
+		"SHAPE_SPHERE",
+		"SHAPE_CILINDER",
+		"SHAPE_BOX",
+		"SHAPE_LAMP",
+		"SHAPE_CAMERA"
+	};
+	return (names[t]);
 }

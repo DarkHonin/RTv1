@@ -11,5 +11,5 @@ make: $(OBJS)
 MINGW32_NT-6.2_OS:
 	gcc $(OBJS) $(INCLUDE) $(LIBPATHS) $(LINKS) -o $(NAME) -lmingw32 -lSDL2main -lSDL2
 Darwin_OS:
-	gcc $(OBJS) $(INCLUDE) $(LIBPATHS) $(LINKS) -o $(NAME)  -framework opengl -framework appkit -lmlx #-lmingw32 -lSDL2main -lSDL2
+	gcc $(OBJS) $(INCLUDE) $(LIBPATHS) $(LINKS) -o $(NAME)  -framework opengl -framework appkit -lmlx
 

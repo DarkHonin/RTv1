@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stage_factory.c                                    :+:      :+:    :+:   */
+/*   shape.space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/23 11:13:33 by wgourley          #+#    #+#             */
-/*   Updated: 2018/08/30 10:18:02 by wgourley         ###   ########.fr       */
+/*   Created: 2018/09/04 20:23:43 by wgourley          #+#    #+#             */
+/*   Updated: 2018/09/04 20:23:43 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <3dft.h>
 
-t_stage	*get_stage()
+t_value_v	shape_space_to_global(t_value_v local, t_shape shape)
 {
-	static t_stage STAGE;
+	t_value_v	ret;
 
-	if (STAGE.camera.type != SHAPE_CAMERA)
-	{
-		STAGE.camera.type = SHAPE_CAMERA;
-		STAGE.space = create_array(sizeof(t_shape));
-	}
-	return (&STAGE);
+	ret = vect_sum(local, shape.components[SHAPE_C_POSITION], 3);
+	return (ret);
 }

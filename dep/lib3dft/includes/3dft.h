@@ -15,28 +15,37 @@
 
 # include <libft.h>
 # include <math_ft.h>
+# include <math.h>
 # include <utilft.h>
 # define ROT_MATRIX_SIZE (t_size) {3, 3}
+# define POINT_MATRIX_SIZE (t_size) {3, 1}
 # define ORIGEN	(t_vect3) {1, 1, 1}
+# define RAD(x)	(x / 180) * M_PI
 enum	e_shape
 {
-	PLANE_RECT,
-	PLANE_CIRCLE,
-	BODY_QUAD,
-	BODY_VOX,
-	BODY_CYLANDER,
-	BODY_CIRCLE,
-	CAMERA
+	SHAPE_LINE,
+	SHAPE_PLANE,
+	SHAPE_SPHERE,
+	SHAPE_CILINDER,
+	SHAPE_BOX,
+	SHAPE_LAMP,
+	SHAPE_CAMERA
 };
 
-typedef	enum e_shape	t_shape_type;
+enum	e_shape_component
+{
+	SHAPE_C_POSITION,
+	SHAPE_C_SIZE,
+	SHAPE_C_ROTATION
+};
+
+typedef	enum e_shape			t_shape_type;
+typedef	enum e_shape_component	t_shape_c;
 typedef	struct			s_shape
 {
-	t_vect3				anchor;
-	t_vect3				size;
-	t_vect3				rotation;
-	t_shape_type		type;
+	t_vect3				components[3];
 	int					color[3];
+	t_shape_type		type;
 }						t_shape;
 typedef	t_array			t_space;
 typedef	struct			s_stage
@@ -45,21 +54,17 @@ typedef	struct			s_stage
 	t_shape		camera;
 }						t_stage;
 
-typedef	t_value (*t_shape_collider)(t_value_v, t_value_v);
+typedef void (*t_mtr_config)(t_value_m mtr, t_value angle);
 
-void		log_shape(t_shape *e);
-char		*get_shape_string(t_shape_type s);
+void		stage_add_space(t_shape e);
 t_stage		*get_stage();
-void		set_projection_surface(t_shape *camera, t_value_v vals);
-void		set_projection_rotation(t_shape *camera, t_value_v vals);
-void		set_projection_anchor(t_shape *camera, t_value_v vals);
-t_value		get_fov(t_shape cam);
-t_value_v	get_point_projection(t_shape cam, t_value_v point, t_len el);
-t_value_v	cam_dir_from_origen(t_shape cam);
-t_value_v	cam_spawn_ray(t_shape cam, t_value point, t_axis a);
-t_value_m	matrix_x_rot(t_value angle);
-t_value_m	matrix_y_rot(t_value angle);
-t_value_m	matrix_z_rot(t_value angle);
-t_value_m	matrix_global_rot(t_value x, t_value y, t_value za);
-t_value_v	project_view_axis(t_value_v s, t_axis a);
+const char	*shape_get_name(t_shape_type t);
+void		shape_set(t_shape_c com, t_value_v data, t_shape *s);
+t_value_v	shape_space_line(t_vect3 pos, t_shape line);
+t_value_v	shape_space_to_global(t_value_v local, t_shape shape);
+t_value_v	point_normilize(t_value_v point_3d);
+t_value_m	matrix_global_rot(t_value x, t_value y, t_value z);
+void		matrix_rotate_global(t_value_v point, t_value_v angles);
+void		shape_space_rotate(t_value_v rot, t_value_v point);
+
 #endif
