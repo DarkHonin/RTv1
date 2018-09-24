@@ -22,6 +22,7 @@
 #include <utilft.h>
 #include <sdlgf.h>
 
+
 #define F(i) (t_value) i
 void	read_shapes(char *file);
 

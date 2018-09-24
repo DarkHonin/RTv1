@@ -19,52 +19,67 @@
 # include <utilft.h>
 # define ROT_MATRIX_SIZE (t_size) {3, 3}
 # define POINT_MATRIX_SIZE (t_size) {3, 1}
+# define SPACE_COMPONENT_SIZE (t_size) {4, 4}
 # define ORIGEN	(t_vect3) {1, 1, 1}
 # define RAD(x)	(x / 180) * M_PI
+# define CAMERA get_stage()->camera;
 enum	e_shape
 {
 	SHAPE_LINE,
 	SHAPE_PLANE,
 	SHAPE_SPHERE,
+	SHAPE_RAY,
 	SHAPE_CILINDER,
 	SHAPE_BOX,
 	SHAPE_LAMP,
 	SHAPE_CAMERA
 };
 
-enum	e_shape_component
+enum	e_space_component
 {
-	SHAPE_C_POSITION,
-	SHAPE_C_SIZE,
-	SHAPE_C_ROTATION
+	SPACE_C_X,
+	SPACE_C_Y,
+	SPACE_C_Z,
+	SPACE_C_T
 };
 
 typedef	enum e_shape			t_shape_type;
-typedef	enum e_shape_component	t_shape_c;
-typedef	struct			s_shape
+typedef	enum e_space_component	t_space_c;
+
+typedef	struct			s_space_empty
 {
-	t_vect3				components[3];
-	int					color[3];
+	t_value_m			components;
+	t_value_m			inverse;
+	t_value_v			x_component;
+	t_value_v			y_component;
+	t_value_v			z_component;
+	t_value_v			translation;
 	t_shape_type		type;
-}						t_shape;
-typedef	t_array			t_space;
+	void				*parent;
+}						t_space_empty;
+
+typedef	union			u_space
+{
+	t_space_empty;
+}						t_space;
+
 typedef	struct			s_stage
 {
-	t_space		*space;
-	t_shape		camera;
+	t_space				*global_space;
+	t_space				*camera_space;
 }						t_stage;
 
-typedef void (*t_mtr_config)(t_value_m mtr, t_value angle);
-
-void		stage_add_space(t_shape e);
-t_stage		*get_stage();
-const char	*shape_get_name(t_shape_type t);
-void		shape_set(t_shape_c com, t_value_v data, t_shape *s);
-t_value_v	shape_space_line(t_vect3 pos, t_shape line);
-t_value_v	shape_space_to_global(t_value_v local, t_shape shape);
-t_value_v	point_normilize(t_value_v point_3d);
-t_value_m	matrix_global_rot(t_value x, t_value y, t_value z);
-void		matrix_rotate_global(t_value_v point, t_value_v angles);
-void		shape_space_rotate(t_value_v rot, t_value_v point);
-
+typedef	void 	(*t_mtr_config)(t_value_m, t_value);
+t_space			*create_space();
+t_stage			*create_stage();
+void			matrix_configure_x_axis(t_value_m mtr, t_value angle);
+void			matrix_configure_y_axis(t_value_m mtr, t_value angle);
+void			matrix_configure_z_axis(t_value_m mtr, t_value angle);
+void			matrix_rotate_global(t_value_v point, t_value_v angles);
+void			space_local(t_space s, t_value_v point);
+void			space_parent(t_space s, t_value_v point);
+void			space_global(t_space s, t_value_v point);
+void			space_camera(t_space s, t_value_v point);
+t_stage			*get_stage();
+void			space_set(t_space *s, t_space_c comp, t_value_v val);
 #endif
