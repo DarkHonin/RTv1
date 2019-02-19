@@ -22,9 +22,15 @@ int	loop(void *arg)
 
 int main(int ac, char **av)
 {
-	const t_node_v values[3] = {20, 0, 10};
+	t_space *sp = space_c(POINT_C(100));
+	t_shape *sh = shape_c(POINT);
+	t_shape *sh1 = shape_c(POINT);
+	t_shape *sh2 = shape_c(POINT);
 
-	t_vect *v = point_c(3, values);
-	for(int i = 0; i < v->values; i++)
-		printf("%f ",v->nodes[i]);
+	sh1->origen = POINT_C(1);
+	sh2->origen = point_c(3, (t_node_v[3]){1, 0, 0.5});
+	
+	space_a(sp, sh);
+	space_a(sp, sh1);
+	space_a(sp, sh2);
 }
