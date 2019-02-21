@@ -15,10 +15,6 @@
 #include <math.h>
 
 
-int	loop(void *arg)
-{
-	return (1);
-}
 
 int main(int ac, char **av)
 {
@@ -27,8 +23,9 @@ int main(int ac, char **av)
 	t_shape *sh1 = shape_c(POINT);
 	t_shape *sh2 = shape_c(POINT);
 
-	sh1->origen = POINT_C(1);
-	sh2->origen = point_c(3, (t_node_v[3]){1, 0, 0.5});
+	sh->origen = point_c(3, (t_node_v[3]){0, 0, 1});
+	sh1->origen = point_c(3, (t_node_v[3]){0, 1, 0});
+	sh2->origen = point_c(3, (t_node_v[3]){1, 0, 0});
 	
 	space_a(sp, sh);
 	space_a(sp, sh1);

@@ -8,10 +8,13 @@ t_vect	*point_c(size_t len, const t_node_v *values){
 	ret->nodes = (t_node_v *)ft_memalloc(len * sizeof(t_node_v));
 	ret->values = len;
 	
-	count = 0;
-	while(count < len){
-		ret->nodes[count] = values[count];
-		count++;
+	if (values)
+	{
+		count = 0;
+		while(count < len){
+			ret->nodes[count] = values[count];
+			count++;
+		}
 	}
 
 	return (ret);

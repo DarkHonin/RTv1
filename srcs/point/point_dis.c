@@ -1,6 +1,6 @@
 #include <rtv_1.h>
 
-t_node_v	point_d(t_vect *a, t_vect *b)
+t_node_v	point_dis(t_vect *a, t_vect *b)
 {
 	t_node_v	dt;
 	size_t		count;
