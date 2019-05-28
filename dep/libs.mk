@@ -1,5 +1,5 @@
 WORKING_DIR:=$(realpath .)
-FOLDERS=$(shell find $(LIBDIR) -name ft_lib)
+FOLDERS=$(shell find '$(LIBDIR)' -name 'ft_lib')
 LIBRAIRIES=$(dir $(FOLDERS))
 INCLUDE=$(addprefix -I,$(addsuffix includes, $(LIBRAIRIES)))
 LIBPATHS=$(addprefix -L,$(LIBRAIRIES))
