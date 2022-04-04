@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.23)
+
+project(rtv1)
+
+add_subdirectory(core)
+add_subdirectory(window)
+
+if(NOT EXISTS ${PROJECT_SOURCE_DIR}/lib)
+    make_directory(${PROJECT_SOURCE_DIR}/lib)
+endif()
+
+
+include(./cmake_get/get_glfw.txt)
+include(./cmake_get/get_glad.txt)
+include(./cmake_get/get_assimp.txt)
+
+
+
+add_executable(rtv1 rtv1.cpp)
+
+target_link_libraries(rtv1 rtv1_core rtv1_window glfw glad assimp)

@@ -1,0 +1,7 @@
+FILE(GLOB rtv1_window_sources ./src/*.cpp)
+
+
+add_library(rtv1_window ${rtv1_window_sources})
+target_link_libraries(rtv1_window glfw)
+target_link_libraries(rtv1_window glad)
+target_include_directories(rtv1_window PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/includes)

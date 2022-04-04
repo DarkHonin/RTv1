@@ -1,0 +1,15 @@
+file(GLOB glad_source_dir ${PROJECT_SOURCE_DIR}/lib/glad)
+
+if(NOT EXISTS ${PROJECT_SOURCE_DIR}/lib/glad)
+
+execute_process(COMMAND unzip ${PROJECT_SOURCE_DIR}/assets/glad.zip -d ${PROJECT_SOURCE_DIR}/lib/glad)
+
+endif()
+
+file(GLOB glad_source_dir ${PROJECT_SOURCE_DIR}/lib/glad)
+
+message(STATUS "GLAD source path: " ${glad_source_dir})
+
+add_library(glad ${glad_source_dir}/glad.c)
+target_include_directories(glad PUBLIC ${glad_source_dir})
+

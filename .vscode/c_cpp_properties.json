@@ -19,7 +19,14 @@
                 "${workspaceFolder}/includes",
                 "${workspaceFolder}/dep/utilft/includes",
                 "${workspaceFolder}/dep/lib3dft/includes",
-                "${workspaceFolder}/dep/SDLGF/includes"
+                "${workspaceFolder}/dep/SDLGF/includes",
+                "${workspaceFolder}/src/includes",
+                "${workspaceFolder}/core/includes",
+                "${workspaceFolder}/lib/glfw-3.3.6/include/GLFW",
+                "${workspaceFolder}/lib/glfw-3.3.6/include",
+                "${workspaceFolder}/lib",
+                "${workspaceFolder}/window/includes",
+                "${workspaceFolder}/lib/glad"
             ]
         }
     ],

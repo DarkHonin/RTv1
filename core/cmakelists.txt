@@ -1,0 +1,5 @@
+FILE(GLOB rtv1_core_sources ./src/*.cpp)
+include_directories(./includes)
+
+add_library(rtv1_core ${rtv1_core_sources})
+target_link_libraries(rtv1_core rtv1_window)

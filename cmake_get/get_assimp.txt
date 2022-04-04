@@ -1,0 +1,16 @@
+
+
+if(NOT EXISTS ${PROJECT_SOURCE_DIR}/lib/assimp)
+
+execute_process(COMMAND git clone https://github.com/assimp/assimp.git ${PROJECT_SOURCE_DIR}/lib/assimp)
+
+endif()
+
+file(GLOB assimp_source_dir ${PROJECT_SOURCE_DIR}/lib/assimp)
+
+message(STATUS "Assimp source path:" ${assimp_source_dir})
+
+add_subdirectory(${assimp_source_dir})
+set(ASSIMP_BUILD_TESTS off)
+set(ASSIMP_INSTALL_PDB off)
+set(ASSIMP_IMPORTERS_ENABLED Obj Collada)

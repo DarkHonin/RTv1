@@ -1,0 +1,14 @@
+file(GLOB glfw_source_dir ${PROJECT_SOURCE_DIR}/lib/glfw-*)
+
+if(${glfw_source_dir} STREQUAL "")
+
+file(DOWNLOAD "https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip" ${PROJECT_SOURCE_DIR}/dl/glfw.zip)
+execute_process(COMMAND unzip ${PROJECT_SOURCE_DIR}/dl/glfw.zip -d ${PROJECT_SOURCE_DIR}/lib)
+
+endif()
+
+file(GLOB glfw_source_dir ${PROJECT_SOURCE_DIR}/lib/glfw-*)
+
+message(STATUS "GLFW source path:" ${glfw_source_dir})
+
+add_subdirectory(${glfw_source_dir})
