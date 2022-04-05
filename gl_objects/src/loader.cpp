@@ -1,14 +1,14 @@
 #include "loader.hpp"
 
 namespace RTV1{
-    namespace Util{
+    namespace Utils{
         std::filesystem::path getExecRoot(){
             return std::filesystem::absolute(".");
         }
     }
 
     namespace Loader{
-        const std::string & readFileRaw(std::filesystem::path path){
+        const char *readFileRaw(std::filesystem::path path){
             if(!std::filesystem::exists(path)){
                 std::cout << "Could not open file: " << path << "\n\t Does not exist" << std::endl;
                 return "";
@@ -22,9 +22,7 @@ namespace RTV1{
 
             file.read(buffer, length);
 
-            std::string & ret = *new std::string(buffer);
-            delete[] buffer;
-            return ret;
+            return buffer;
         }
     }
 }

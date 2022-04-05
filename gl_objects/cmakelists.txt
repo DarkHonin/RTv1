@@ -6,3 +6,4 @@ target_include_directories(rtv1_gl_objects PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/in
 
 target_link_libraries(rtv1_gl_objects glad)
 target_link_libraries(rtv1_gl_objects glm)
+target_link_libraries(rtv1_gl_objects assimp)

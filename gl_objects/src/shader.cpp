@@ -6,6 +6,7 @@ bool shaderStatus(GLuint shader){
     glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 
     if(!success) {
+        glGetShaderInfoLog(shader, 512, NULL, infoLog);
         std::cout << infoLog << std::endl;
         return false;
     }
@@ -25,11 +26,9 @@ bool programStatus(GLuint program){
     return true;
 }
 
-GLuint createShader(std::string name, GLuint type){
-    std::filesystem::path root = "assets/shaders/" + name;
-    std::cout << "Absolute path for shader '" << name << "':" << std::filesystem::absolute(root) << std::endl;
+GLuint createShader(std::string root, GLuint type){
 
-    std::filesystem::path shader_source_path = root;
+    std::filesystem::path shader_source_path(root);
 
     switch(type){
         case GL_VERTEX_SHADER:
@@ -43,15 +42,17 @@ GLuint createShader(std::string name, GLuint type){
     }
 
 
-    const std::string & shader_source = RTV1::Loader::readFileRaw(std::filesystem::absolute(shader_source_path));
+    const char * shader_source = RTV1::Loader::readFileRaw(std::filesystem::absolute(shader_source_path));
     GLuint shader = glCreateShader(type);
-    const char * ss = shader_source.c_str();
-    glShaderSource(shader, 1, &ss, NULL);
+    glShaderSource(shader, 1, &shader_source, NULL);
 
     glCompileShader(shader);
-    if(!shaderStatus(shader)) return 0;
+    if(!shaderStatus(shader)) {
+        std::cout << "Failed to compile shader\n-----\n" << shader_source << "\n-----\n" << std::endl;
+        return 0;
+    }
 
-    delete &shader_source;
+    delete[] shader_source;
     std::cout << "Shader compiled: " << shader_source_path << std::endl;
     return shader;
 }
@@ -59,8 +60,11 @@ GLuint createShader(std::string name, GLuint type){
 
 namespace RTV1{
     Shader::Shader(std::string name) : name(name){
-        this->shaders[ShaderIndex::vertex] = createShader(name, GL_VERTEX_SHADER);
-        this->shaders[ShaderIndex::fragment] = createShader(name, GL_FRAGMENT_SHADER);
+
+        std::filesystem::path root = Utils::getExecRoot().append("assets/shaders").append(name);
+        std::cout << "Building shader: " << root << std::endl;
+        this->shaders[ShaderIndex::vertex] = createShader(root, GL_VERTEX_SHADER);
+        this->shaders[ShaderIndex::fragment] = createShader(root, GL_FRAGMENT_SHADER);
 
         this->program = glCreateProgram();
         for(int i = 0; i < sizeof(this->shaders); i ++)

@@ -21,7 +21,7 @@ endif()
 
 include(./cmake_get/get_glfw.txt)
 include(./cmake_get/get_glad.txt)
-# include(./cmake_get/get_assimp.txt)
+include(./cmake_get/get_assimp.txt)
 include(./cmake_get/get_glm.txt)
 
 

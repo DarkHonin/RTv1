@@ -8,12 +8,12 @@
 
 namespace RTV1{
 
-    namespace Util{
+    namespace Utils{
         std::filesystem::path getExecRoot();
     };
 
     namespace Loader{
-        const std::string &readFileRaw(std::filesystem::path path);
+        const char *readFileRaw(std::filesystem::path path);
 
     };
 
