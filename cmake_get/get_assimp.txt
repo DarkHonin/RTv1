@@ -10,7 +10,12 @@ file(GLOB assimp_source_dir ${PROJECT_SOURCE_DIR}/lib/assimp)
 
 message(STATUS "Assimp source path:" ${assimp_source_dir})
 
-add_subdirectory(${assimp_source_dir})
+
 set(ASSIMP_BUILD_TESTS off)
-set(ASSIMP_INSTALL_PDB off)
-set(ASSIMP_IMPORTERS_ENABLED Obj Collada)
+set(ASSIMP_DOUBLE_PRECISION ON)
+set(ASSIMP_BUILD_TESTS OFF)
+set(INJECT_DEBUG_POSTFIX ON)
+set(ASSIMP_INSTALL_PDB ON)
+
+add_subdirectory(${assimp_source_dir})
+set_property(TARGET assimp PROPERTY CXX_STANDARD 17)

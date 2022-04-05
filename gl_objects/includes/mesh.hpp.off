@@ -1,0 +1,48 @@
+#ifndef RTV1_MESH_HPP
+#define RTV1_MESH_HPP
+
+#include <glm/glm.hpp>
+
+#include <glad.h>
+#include <string>
+#include <vector>
+#include "shader.hpp"
+#include <string>
+#define ASSIMP_BUILD_BOOST_WORKAROUND
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+namespace RTV1{
+    struct Vertex{
+        glm::vec3 Position;
+        glm::vec3 Normal;
+        glm::vec2 TexCoords;
+    };
+
+    struct Texture {
+        GLuint id;
+        std::string type;
+    };
+
+    class Mesh{
+        public:
+            std::vector<Vertex> vertices;
+            std::vector<GLuint> indices;
+            std::vector<Texture> textures;
+            Mesh(std::vector<Vertex> verts, std::vector<GLuint> inde, std::vector<Texture> tex);
+
+            void draw(Shader &shader);
+        private:
+            GLuint VAO, VBO, EBO;
+            void setupMesh();
+    };
+
+    Mesh &loadMesh(std::string path);
+
+}
+
+
+
+
+#endif

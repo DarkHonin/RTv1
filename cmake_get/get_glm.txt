@@ -1,0 +1,14 @@
+file(GLOB glm_source_dir ${PROJECT_SOURCE_DIR}/lib/glm)
+
+if(NOT EXISTS ${glm_source_dir})
+
+file(DOWNLOAD "https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip" ${PROJECT_SOURCE_DIR}/dl/glm.zip)
+execute_process(COMMAND unzip ${PROJECT_SOURCE_DIR}/dl/glm.zip -d ${PROJECT_SOURCE_DIR}/lib)
+
+endif()
+
+file(GLOB glm_source_dir ${PROJECT_SOURCE_DIR}/lib/glm)
+
+message(STATUS "GLM source path:" ${glm_source_dir})
+
+add_subdirectory(${glm_source_dir})

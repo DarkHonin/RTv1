@@ -34,6 +34,7 @@ namespace RTV1{
                 std::cout << "Failed to init GLAD" << std::endl;
                 this->glad_init = false;
             }
+        glEnable(GL_DEPTH_TEST);
         this->glad_init = true;
     }
 
@@ -75,7 +76,7 @@ namespace RTV1{
         // Clear
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
 
         // Render
 

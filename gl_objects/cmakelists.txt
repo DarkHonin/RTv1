@@ -1,0 +1,8 @@
+FILE(GLOB rtv1_gl_objects_sources ./src/*.cpp)
+
+add_library(rtv1_gl_objects ${rtv1_gl_objects_sources})
+
+target_include_directories(rtv1_gl_objects PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/includes)
+
+target_link_libraries(rtv1_gl_objects glad)
+target_link_libraries(rtv1_gl_objects glm)

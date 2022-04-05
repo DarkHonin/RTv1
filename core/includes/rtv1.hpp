@@ -5,5 +5,6 @@
 #include <iostream>
 
 #include "window.hpp"
+#include "shader.hpp"
 
 #endif

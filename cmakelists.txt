@@ -2,8 +2,17 @@ cmake_minimum_required(VERSION 3.23)
 
 project(rtv1)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+
 add_subdirectory(core)
 add_subdirectory(window)
+add_subdirectory(gl_objects)
+
+
+
+
+FILE(COPY ${PROJECT_SOURCE_DIR}/assets/shaders DESTINATION ${PROJECT_BINARY_DIR}/assets)
 
 if(NOT EXISTS ${PROJECT_SOURCE_DIR}/lib)
     make_directory(${PROJECT_SOURCE_DIR}/lib)
@@ -12,10 +21,11 @@ endif()
 
 include(./cmake_get/get_glfw.txt)
 include(./cmake_get/get_glad.txt)
-include(./cmake_get/get_assimp.txt)
+# include(./cmake_get/get_assimp.txt)
+include(./cmake_get/get_glm.txt)
 
 
 
 add_executable(rtv1 rtv1.cpp)
 
-target_link_libraries(rtv1 rtv1_core rtv1_window glfw glad assimp)
+target_link_libraries(rtv1 rtv1_core rtv1_window rtv1_gl_objects glfw glad glm)
